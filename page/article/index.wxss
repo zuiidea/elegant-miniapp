@@ -1,0 +1,45 @@
+.article-cover {
+  width: 750rpx;
+  height: 435rpx;
+}
+
+.article-video, .article-cover, .article-banner {
+  width: 750rpx;
+  height: 421.875rpx;
+  position: relative;
+}
+
+.article-inner {
+  padding: 30rpx;
+}
+
+.article-title {
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.article-snippet, .article-datetime {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 16rpx;
+  line-height: 1.6;
+}
+
+.article-banner {
+  position: relative;
+}
+
+.article-banner .icon-play {
+  position: absolute;
+  right: 50rpx;
+  bottom: 40rpx;
+}
+
+.article-banner .button-close {
+  position: absolute;
+  left: 50rpx;
+  top: 30rpx;
+  width: 40rpx;
+  height: 40rpx;
+  z-index: 9;
+}

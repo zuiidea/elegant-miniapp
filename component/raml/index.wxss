@@ -1,0 +1,9 @@
+@import "../videoPlayer/index.wxss";
+
+.view {
+  font-size: 26rpx;
+  color: #333;
+  margin: 30rpx;
+  line-height: 2;
+  font-weight: 500;
+}

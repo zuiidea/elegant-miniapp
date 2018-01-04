@@ -1,0 +1,35 @@
+.provider-list {
+  padding: 64rpx;
+  display: flex;
+  width: 750rpx;
+  box-sizing: border-box;
+}
+
+.provider-icon {
+  width: 100rpx;
+  height: 100rpx;
+  border: solid 1rpx #eee;
+  border-radius: 50%;
+}
+
+.provider-name {
+  margin-top: 8rpx;
+  color: #666;
+  font-size: 24rpx;
+}
+
+.provider-item {
+  width: 100rpx;
+  text-align: center;
+  display: block;
+  opacity: 1s;
+  transition: opacity 0.3s ease;
+}
+
+.provider-item:active {
+  opacity: 0.6;
+}
+
+.provider-item + .provider-item {
+  margin-left: 44rpx;
+}

@@ -1,0 +1,56 @@
+.scrollTag .swiper-tabs {
+  height: 100rpx;
+  white-space: nowrap;
+  background: #fff;
+  transition: all 0.3s ease;
+  overflow: auto;
+  
+}
+
+.scrollTag .swiper-tabs-container {
+  width: 750rpx;
+  overflow: hidden;
+}
+
+
+.scrollTag .swiper-tabs-container .hairline-bottom::after {
+  background-color: #ccc;
+}
+
+.scrollTag .swiper-tab-item:first-child {
+  margin-left: 30rpx;
+}
+
+.scrollTag .swiper-tab-item:last-child {
+  margin-right: 30rpx;
+}
+
+.scrollTag .swiper-tab-item {
+  height: 56rpx;
+  line-height: 56rpx;
+  min-width: 150rpx;
+  padding: 0 23rpx;
+  color: #666;
+  font-size: 26rpx;
+  text-align: center;
+  display: inline-block;
+  transition: all 0.3s ease;
+  position: relative;
+  margin-left: 20rpx;
+  margin-top: 22rpx;
+}
+
+.scrollTag .swiper-tab-item::after {
+  border-radius: 12rpx;
+  border-color: #ccc;
+  transition: all 0.3s ease;
+}
+
+.scrollTag .swiper-tab-item.active, .swiper-tab-item.swiper-tab-item-hover {
+  color: #f23118;
+}
+
+.scrollTag .swiper-tab-item.active::after {
+  background: rgba(242, 49, 24, 0.1);
+  border-color: transparent;
+}

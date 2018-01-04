@@ -1,0 +1,22 @@
+<include src="../../component/common/index.wxml" />
+<import src="../../component/listViewBottom/index.wxml" />
+<import src="../../component/videoPlayer/index.wxml" />
+<import src="../../component/scrollTag/index.wxml" />
+
+<view class="container" id="container">
+  <template is="scrollTag" data="{{list:categories, current:current, scrollLeft:scrollLeft}}" wx:if="{{categories.length}}" />
+
+  <view class="article-list">
+    <view wx:for="{{data[current].list}}" class="article-item type-{{item.templateType}}" wx:key="articleId">
+      <view class="article-banner">
+        <template is="videoPlayer" data="{{id:item.articleId, src:item.videos[0].url, poster:item.covers[0].url, isPlaying:currentPlayId === item.articleId}}" />
+      </view>
+      <view class="article-inner" data-id="{{item.articleId}}" bindtap="handleGoDetail">
+        <view class="article-title text-overflow">{{item.title}}</view>
+        <view class="article-snippet text-overflow-2">{{item.snippet}}</view>
+        <view class="article-datetime">{{item.date}}</view>
+      </view>
+    </view>
+  </view>
+  <template is="listViewBottom" data="{{type: !hasMore ? 2 : 1}}" wx:if="{{list.length > 2}}" />
+</view>

@@ -1,0 +1,11 @@
+<template name="listViewBottom">
+  <view class="list-view-bottom">
+    <view class="loaing-data" wx:if="{{type === 1}}">
+      <view class="loader"></view>
+      <view class="loader-text">正在加载更多...</view>
+    </view>
+    <view class="loaing-done" wx:if="{{type === 2}}">
+      已加载到底部
+    </view>
+  </view>
+</template>

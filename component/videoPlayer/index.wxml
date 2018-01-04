@@ -1,0 +1,12 @@
+<template name="videoPlayer">
+  <view class="video-player">
+    <block wx:if="{{!isPlaying}}">
+      <image class="video-player-cover fadeIn"  data-id="{{id}}" bindtap="handleVideoCover" src="{{poster}}"></image>
+      <view class="video-player-play fadeIn" data-id="{{id}}" bindtap="handleVideoPlay" />
+    </block>
+
+    <video wx:if="{{isPlaying}}" autoplay class="video-player-video fadeIn" poster="{{poster}}" objectFit="fill" src="{{src}}">
+      <cover-image class="video-player-close" src="https://journal.zuiidea.com/static/icon/close.png" data-id="{{id}}" bindtap="handleVideoClose" />
+    </video>
+  </view>
+</template>

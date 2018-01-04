@@ -1,0 +1,17 @@
+@import "./component/animate.wxss";
+@import "./component/common.wxss";
+@import "./component/loader/index.wxss";
+@import "./component/toast/index.wxss";
+@import "./component/icon/index.wxss";
+@import "./component/listViewBottom/index.wxss";
+@import "./component/videoPlayer/index.wxss";
+@import "./component/scrollTag/index.wxss";
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+} 

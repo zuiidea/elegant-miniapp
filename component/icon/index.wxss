@@ -1,0 +1,44 @@
+[class^="icon"] {
+  width: 40rpx;
+  height: 40rpx;
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.icon-toast-success {
+  background-image: url('https://journal.zuiidea.com/static/success.svg');
+}
+
+.icon-toast-fail {
+  background-image: url('https://journal.zuiidea.com/static/fail.svg');
+}
+
+.icon-toast-loading {
+  background-image: url('https://journal.zuiidea.com/static/loading.svg');
+}
+
+.icon-toast-info {
+  background-image: url('https://journal.zuiidea.com/static/info.svg');
+}
+
+.icon-play {
+  background-image: url('https://journal.zuiidea.com/static/icon/play.svg');
+}
+
+.icon-pause {
+  background-image: url('https://journal.zuiidea.com/static/icon/pause.svg');
+}
+
+.icon-close {
+  background-image: url('https://journal.zuiidea.com/static/icon/close.png');
+}
+
+.icon-play, .icon-pause {
+  width: 80rpx;
+  height: 80rpx;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  background-size: 102%;
+  background-position: center;
+}

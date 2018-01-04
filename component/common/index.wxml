@@ -1,0 +1,5 @@
+<import src="../toast/index.wxml" />
+<import src="../loader/index.wxml" />
+
+<template is="loader" data="{{loading}}" />
+<template is="wetoast" data="{{...__wetoast__}}" />

@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "page/article/index",
+    "page/article/detail/index",
+    "page/home/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "告白地球",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#fff"
+  }
+}

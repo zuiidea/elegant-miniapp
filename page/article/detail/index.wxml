@@ -1,0 +1,9 @@
+<include src="../../../component/common/index.wxml" />
+
+<view class="container" wx:if="{{!loading}}">
+
+  <raml content="{{content}}" />
+
+  <!-- <template is="videoPlayer" data="{{id:item.articleId, src:item.videos[0].url,poster:item.covers[0].url}}" /> -->
+
+</view>

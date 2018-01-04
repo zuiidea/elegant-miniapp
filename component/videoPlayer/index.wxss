@@ -1,0 +1,30 @@
+.video-player-cover, .video-player-video, .video-player {
+  width: 750rpx;
+  height: 421.875rpx;
+}
+
+.video-player {
+  position: relative;
+}
+
+.video-player-play {
+  position: absolute;
+  right: 50rpx;
+  bottom: 40rpx;
+  width: 80rpx;
+  height: 80rpx;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  background-size: 102%;
+  background-position: center;
+  background-image: url('https://journal.zuiidea.com/static/icon/play.svg');
+}
+
+.video-player-close {
+  position: absolute;
+  left: 50rpx;
+  top: 30rpx;
+  width: 40rpx;
+  height: 40rpx;
+  z-index: 9;
+}

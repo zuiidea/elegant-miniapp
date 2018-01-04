@@ -1,0 +1,40 @@
+.list-view-bottom {
+  height: 100rpx;
+  line-height: 100rpx;
+}
+
+.list-view-bottom .loaing-data {
+  display: flex;
+  justify-content: center;
+  font-size: 24rpx;
+  color: #999;
+  align-items: center;
+}
+
+.list-view-bottom .loaing-done {
+  text-align: center;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.list-view-bottom .loaing-data .loader {
+  width: 40rpx;
+  height: 40rpx;
+  border-top: 2rpx solid rgba(0, 0, 0, 0.08);
+  border-right: 2rpx solid rgba(0, 0, 0, 0.08);
+  border-bottom: 2rpx solid rgba(0, 0, 0, 0.08);
+  border-left: 2rpx solid rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  animation: spinner 600ms infinite linear;
+  margin-right: 16rpx;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

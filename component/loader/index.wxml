@@ -1,0 +1,8 @@
+<template name="loader">
+  <view class="page-loader {{loading ? 'loader-show' : 'loader-hidden'}}" style="top: {{top ? top+'rpx' : '0'}};background-color: rgba(255, 255, 255, {{opacity||1}})">
+    <view class="loader-warpper">
+      <view class="loader"></view>
+      <view class="loader-text">{{loadText || ""}}</view>
+    </view>
+  </view>
+</template>

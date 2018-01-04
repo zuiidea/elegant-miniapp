@@ -1,0 +1,15 @@
+<template name="wetoast">
+  <view class="wetoast {{reveal ? 'wetoast-show' : ''}}">
+    <view class="wetoast-mask" animation="{{animationData}}"></view>
+    <view class="wetoast-content" animation="{{animationData}}">
+      <block wx:if="{{icon}}">
+        <view class="wetoast-icon-container">
+          <view class="icon {{iconClass}}" />
+        </view>
+      </block>
+      <block wx:if="{{title}}">
+        <view class="wetoast-title">{{title}}</view>
+      </block>
+    </view>
+  </view>
+</template>

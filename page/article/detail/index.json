@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "raml": "/component/raml/index"
+  }
+}
