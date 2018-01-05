@@ -1,9 +1,11 @@
 import { request, handleUrl, formatTime } from '../../util/index'
 import videoPlayer from '../../component/videoPlayer/index'
 import scrollTag from '../../component/scrollTag/index'
-console.log(videoPlayer)
 
 let timeId = 0
+let beforeScrollTop = 0
+let startX = 0
+let startY = 0
 
 Page({
   ...scrollTag,
@@ -41,7 +43,10 @@ Page({
           })
           this.setData({
             current: data.category.subCategories[0].categoryId,
-            categories: data.category.subCategories
+            categories: data.category.subCategories.map(item => ({
+              id: item.categoryId,
+              name: item.name
+            }))
           }, () => {
             resolve()
           })
@@ -53,18 +58,19 @@ Page({
 
   handleData(odata) {
     const { data, current } = this.data
-    const { list = [] } = data
+    const currentData = data[current] || {}
+    const { list = [] } = currentData
     const { hasMore, hasPreMore, nextUrl } = odata
     this.setData({
-      dataLoading: false,
       data: {
         ...data,
         [current]: {
+          loading: false,
           ...data[current],
           hasPreMore,
           hasMore,
           nextUrl,
-          list: odata.list,
+          // list: odata.list,
           list: (hasPreMore ? list : []).concat(odata.list).map(item => ({
             ...item,
             date: formatTime(item.crawlerTimestamp)
@@ -75,14 +81,21 @@ Page({
   },
 
   fetch(options = {}) {
-    const { current } = this.data
+    const { current, data } = this.data
     const { nextUrl = '' } = options
-    this.setData({
-      dataLoading: true,
-    })
+
+    if (!data[current]) {
+      this.setData({
+        data: {
+          ...this.data.data,
+          loading: true,
+          [current]: {}
+        },
+      })
+    }
 
     request({
-      url: nextUrl.replace('https://api.qingmang.me/v2/', '') || 'article.list',
+      url: nextUrl || 'article.list',
       data: {
         category_id: current
       }
@@ -106,9 +119,18 @@ Page({
   },
 
   onPageScroll(options) {
-    const { hasMore, nextUrl, dataLoading } = this.data
+    const { data, current } = this.data
+    const { hasMore, nextUrl, dataLoading } = data[current]
     const { scrollTop } = options
     const { windowHeight } = wx.getSystemInfoSync()
+
+    const delta = scrollTop - beforeScrollTop
+    this.setData({
+      scrollDirection: delta > 0 ? 'down' : 'up',
+      scrollTop,
+    })
+
+    beforeScrollTop = scrollTop
 
     wx.createSelectorQuery().select('#container').boundingClientRect(({ height }) => {
       if ((height - scrollTop - windowHeight - 335) < 0) {
@@ -133,6 +155,74 @@ Page({
     wx.navigateTo({
       url: '/page/article/detail/index?id=' + id,
     })
+  },
+
+  handleSrollTagTap(e) {
+    const { id } = e.currentTarget.dataset
+    this.handleSetCurrent(id)
+  },
+
+  handleTouchStart(e) {
+    const { touches, currentTarget } = e
+    startX = touches[0].clientX
+    startY = touches[0].clientY
+
+  },
+  handleTouchEnd(e) {
+    const { changedTouches, currentTarget } = e
+    const endX = changedTouches[0].clientX
+    const endY = changedTouches[0].clientY
+
+    const deltaY = startY - endY
+    const deltaX = startX - endX
+
+    if (deltaY > -20 && deltaY < 20) {
+      if (deltaX > 50) {
+        this.handleNext()
+      }
+      if (deltaX < -50) {
+        this.handlePre()
+      }
+    }
+  },
+
+  handleSetCurrent(id) {
+    this.setData({
+      current: id
+    }, () => {
+      this.handleScrollTagScroll()
+      if (!this.data.data[id]) {
+        this.fetch()
+      }
+    })
+  },
+
+  handleNext() {
+    const { current, categories } = this.data
+    let currentIndex = 0
+
+    categories.forEach((item, index) => {
+      if (item.id === current) {
+        currentIndex = index
+      }
+    })
+
+    const nextIndex = (currentIndex + 1) === categories.length ? currentIndex : (currentIndex + 1)
+    this.handleSetCurrent(categories[nextIndex].id)
+  },
+
+  handlePre() {
+    const { current, categories } = this.data
+    let currentIndex = 0
+
+    categories.forEach((item, index) => {
+      if (item.id === current) {
+        currentIndex = index
+      }
+    })
+
+    const nextIndex = currentIndex === 0 ? 0 : (currentIndex - 1)
+    this.handleSetCurrent(categories[nextIndex].id)
   }
 
 })

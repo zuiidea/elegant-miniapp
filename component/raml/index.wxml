@@ -4,7 +4,7 @@
 <block wx:for="{{nodes}}" wx:key="id">
 
   <view class="view" wx:if="{{item.type === 0}}">{{item.text.text}}</view>
-
+  <image class="image" mode="widthFix"  wx:if="{{item.type === 1}}" src="{{item.image.source}}"></image>
   <template wx:if="{{item.type === 2}}" is="videoPlayer" data="{{id:item.id, src:item.media.source, poster:item.media.cover, isPlaying:currentPlayId === item.id}}" />
 
 </block>

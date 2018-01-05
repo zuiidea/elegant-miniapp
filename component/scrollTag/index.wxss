@@ -1,17 +1,15 @@
 .scrollTag .swiper-tabs {
-  height: 100rpx;
+  height: 90rpx;
   white-space: nowrap;
   background: #fff;
   transition: all 0.3s ease;
   overflow: auto;
-  
 }
 
 .scrollTag .swiper-tabs-container {
   width: 750rpx;
   overflow: hidden;
 }
-
 
 .scrollTag .swiper-tabs-container .hairline-bottom::after {
   background-color: #ccc;
@@ -28,29 +26,38 @@
 .scrollTag .swiper-tab-item {
   height: 56rpx;
   line-height: 56rpx;
-  min-width: 150rpx;
   padding: 0 23rpx;
-  color: #666;
+  color: #999;
   font-size: 26rpx;
   text-align: center;
   display: inline-block;
-  transition: all 0.3s ease;
   position: relative;
   margin-left: 20rpx;
-  margin-top: 22rpx;
+  transition: all 0.4s ease-in-out;
+  font-weight: 500;
 }
 
 .scrollTag .swiper-tab-item::after {
-  border-radius: 12rpx;
-  border-color: #ccc;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease-in-out;
+  content: '';
+  display: block;
+  height: 5rpx;
+  background: #eee;
+  position: absolute;
+  bottom: -5rpx;
+  border-radius: 8rpx;
+  left: 50%;
+  margin-left: 0;
+  opacity: 0;
+  width: 0;
 }
 
-.scrollTag .swiper-tab-item.active, .swiper-tab-item.swiper-tab-item-hover {
-  color: #f23118;
+.scrollTag .swiper-tab-item.active {
+  color: #000;
 }
 
 .scrollTag .swiper-tab-item.active::after {
-  background: rgba(242, 49, 24, 0.1);
-  border-color: transparent;
+  width: 48rpx;
+  opacity: 1;
+  margin-left: -24rpx;
 }

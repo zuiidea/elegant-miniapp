@@ -29,19 +29,19 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
 					"name": "应用页",
 					"pathName": "page/article/index",
-					"query": "id=acom.wandoujia.eyepetizer"
+					"query": "id=aone.hh.oneclient"
 				},
 				{
-					"id": -1,
+					"id": 1,
 					"name": "详情",
 					"pathName": "page/article/detail/index",
-					"query": "id=1910705002548153393"
+					"query": "id=-3319919071491601252"
 				},
 				{
 					"id": -1,

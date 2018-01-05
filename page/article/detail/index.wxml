@@ -1,9 +1,12 @@
 <include src="../../../component/common/index.wxml" />
 
 <view class="container" wx:if="{{!loading}}">
+  <view class="page-header">
+    <view class="article-author">{{author}}</view>
+    <view class="article-date">{{date}}</view>
+  </view>
 
   <raml content="{{content}}" />
 
-  <!-- <template is="videoPlayer" data="{{id:item.articleId, src:item.videos[0].url,poster:item.covers[0].url}}" /> -->
 
 </view>

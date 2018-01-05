@@ -1,9 +1,9 @@
 <template name="scrollTag">
   <view class="scrollTag" wx:if="{{list.length}}">
-    <view class="hairline-bottom swiper-tabs-container">
+    <view class="swiper-tabs-container">
       <scroll-view class="swiper-tabs" scroll-x scroll-left="{{scrollLeft}}" id="scrollTagSwiperTabs" scroll-with-animation="{{!disableAnimate}}">
         <block wx:for="{{list}}" wx:key="id">
-          <view class="swiper-tab-item hairline-border {{item.id == current ? 'active' : ''}}" hover-class="swiper-tab-item-hover" id="scrollTag{{item.id}}" data-id="{{item.id}}" bindtap="handleSrollTagTap">
+          <view class="swiper-tab-item {{item.id == current ? 'active' : ''}}" hover-class="swiper-tab-item-hover" id="scrollTag{{item.id}}" data-id="{{item.id}}" bindtap="handleSrollTagTap">
             {{item.name}}
           </view>
         </block>

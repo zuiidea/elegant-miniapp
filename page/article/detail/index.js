@@ -1,4 +1,4 @@
-import { request, handleUrl } from '../../../util/index'
+import { request, handleUrl, formatTime } from '../../../util/index'
 
 const app = getApp()
 
@@ -27,6 +27,11 @@ Page({
       .then(({ data, success }) => {
         if (success) {
           const article = JSON.parse(handleUrl(JSON.stringify(data.article)))
+          wx.setNavigationBarTitle({
+            title: article.title,
+          })
+
+          article.date = formatTime(article.publishTimestamp)
           this.setData(article)
         }
       })

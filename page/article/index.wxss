@@ -1,16 +1,20 @@
-.article-cover {
-  width: 750rpx;
-  height: 435rpx;
-}
-
-.article-video, .article-cover, .article-banner {
-  width: 750rpx;
-  height: 421.875rpx;
-  position: relative;
+.article-list {
+  margin-top: 90rpx;
 }
 
 .article-inner {
   padding: 30rpx;
+}
+
+.article-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.article-image {
+  width: 690rpx;
+  border-radius: 30rpx;
 }
 
 .article-title {
@@ -25,21 +29,9 @@
   line-height: 1.6;
 }
 
-.article-banner {
-  position: relative;
-}
-
-.article-banner .icon-play {
-  position: absolute;
-  right: 50rpx;
-  bottom: 40rpx;
-}
-
-.article-banner .button-close {
-  position: absolute;
-  left: 50rpx;
-  top: 30rpx;
-  width: 40rpx;
-  height: 40rpx;
+.category-container {
+  position: fixed;
+  top: 0;
   z-index: 9;
+  transition: all 0.4s ease-in-out;
 }
