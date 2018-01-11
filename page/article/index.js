@@ -152,6 +152,9 @@ Page({
 
   handleGoDetail(e) {
     const { id } = e.currentTarget.dataset
+    this.setData({
+      currentPlayId: null,
+    })
     wx.navigateTo({
       url: '/page/article/detail/index?id=' + id,
     })

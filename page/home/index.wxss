@@ -1,8 +1,10 @@
 .provider-list {
-  padding: 64rpx;
+  padding: 64rpx 30rpx;
   display: flex;
   width: 750rpx;
   box-sizing: border-box;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .provider-icon {
@@ -19,17 +21,14 @@
 }
 
 .provider-item {
-  width: 100rpx;
   text-align: center;
   display: block;
   opacity: 1s;
   transition: opacity 0.3s ease;
+  width: 25%;
+  margin-bottom: 64rpx;
 }
 
 .provider-item:active {
   opacity: 0.6;
-}
-
-.provider-item + .provider-item {
-  margin-left: 44rpx;
 }

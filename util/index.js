@@ -31,7 +31,7 @@ const request = (config = {}) => {
 
     cloneConfig.data = {
       ...cloneConfig.data,
-      token: 'c400a7e21688496ca3e7f17c6b0d1846'
+      token: apiToken
     }
 
     wx.request({

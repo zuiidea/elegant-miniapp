@@ -1,8 +1,8 @@
 <include src="../../component/common/index.wxml" />
 <view class="container">
   <view class="provider-list">
-    <block wx:for="{{provider}}" wx:key="packageName">
-      <navigator url="/page/article/index?id={{item.packageName}}" class="provider-item" hover-class="tranparent">
+    <block wx:for="{{data}}" wx:key="categoryId">
+      <navigator url="/page/article/index?id={{item.categoryId}}" class="provider-item" hover-class="tranparent">
         <image src="{{item.icon}}" class="provider-icon" />
         <view class="provider-name">{{item.name}}</view>
       </navigator>

@@ -3,22 +3,25 @@
 <import src="../../component/videoPlayer/index.wxml" />
 <import src="../../component/scrollTag/index.wxml" />
 
-<view class="container" id="container" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd">
-  <template is="loader" data="{{loading: !loading && !data[current],top:100}}" />
-  <view class="category-container" style="transform: translate3d(0,{{scrollDirection === 'down' && scrollTop > 45 ? '-45' : '0'}}px,0)">
-    <template is="scrollTag" data="{{list:categories, current:current, scrollLeft:scrollLeft}}" wx:if="{{categories.length}}" />
+<view class="container" id="container">
+  <template is="loader" data="{{loading: !loading && !data[current],top: categories.length > 1 ? 100 : 0 }}" />
+  <view class="category-container" wx:if="{{categories.length > 1}}" style="transform: translate3d(0,{{scrollDirection === 'down' && scrollTop > 45 ? '-45' : '0'}}px,0)">
+    <template is="scrollTag" data="{{list:categories, current:current, scrollLeft:scrollLeft}}" />
   </view>
-  <view class="article-list">
+  <view class="article-list" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" style="margin-top:{{categories.length > 1 ? 90 : 20}}rpx">
     <view wx:for="{{data[current].list}}" class="article-item type-{{item.templateType}}" wx:key="articleId">
-      <view class="article-banner" wx:if="{{item.templateType === 'video'}}">
+      <view class="article-banner" wx:if="{{item.templateType === 'video' && item.videos[0].url }}">
         <template is="videoPlayer" data="{{id:item.articleId, src:item.videos[0].url, poster:item.covers[0].url, isPlaying:currentPlayId === item.articleId}}" />
       </view>
-      <view class="article-banner" wx:if="{{item.templateType === 'image'}}">
-        <image class="article-image fadeIn" data-id="{{item.articleId}}" bindtap="handleGoDetail" mode="widthFix"  src="{{item.images[0].url}}"></image>
+
+      <view class="article-banner" wx:if="{{item.templateType === 'image' || item.templateType === 'text'}}">
+        <image style="height: {{item.images[0].height * 690 / item.images[0].width }}rpx;" wx:if="{{item.images[0].url}}" class="article-image fadeIn" data-id="{{item.articleId}}" bindtap="handleGoDetail" mode="widthFix" src="{{item.images[0].url}}"></image>
       </view>
-       <view class="article-banner" wx:if="{{item.templateType === 'music'}}">
-        <image class="article-image fadeIn" data-id="{{item.articleId}}" bindtap="handleGoDetail" mode="widthFix"  src="{{item.covers[0].url}}"></image>
+
+      <view class="article-banner" wx:if="{{item.templateType === 'music' ||(item.templateType === 'video' && !item.videos[0].url) }}">
+        <image style="height: {{item.covers[0].height * 690 / item.covers[0].width }}rpx;" class="article-image fadeIn" data-id="{{item.articleId}}" bindtap="handleGoDetail" mode="widthFix" src="{{item.covers[0].url}}"></image>
       </view>
+
       <view class="article-inner" data-id="{{item.articleId}}" bindtap="handleGoDetail">
         <view class="article-title text-overflow">{{item.title}}</view>
         <view class="article-snippet text-overflow-2">{{item.snippet}}</view>
