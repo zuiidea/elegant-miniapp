@@ -11,7 +11,7 @@
   <view class="article-list" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" style="margin-top:{{categories.length > 1 ? 90 : 20}}rpx">
     <view wx:for="{{data[current].list}}" class="article-item type-{{item.templateType}}" wx:key="articleId">
       <view class="article-banner" wx:if="{{item.templateType === 'video' && item.videos[0].url }}">
-        <template is="videoPlayer" data="{{id:item.articleId, src:item.videos[0].url, poster:item.covers[0].url, isPlaying:currentPlayId === item.articleId}}" />
+        <template is="videoPlayer" data="{{id:item.articleId, src:item.videos[0].url, poster:item.videos[0].coverUrl, isPlaying:currentPlayId === item.articleId}}" />
       </view>
 
       <view class="article-banner" wx:if="{{item.templateType === 'image' || item.templateType === 'text'}}">
@@ -29,5 +29,5 @@
       </view>
     </view>
   </view>
-  <template is="listViewBottom" data="{{type: !hasMore ? 2 : 1}}" wx:if="{{list.length > 2}}" />
+  <template is="listViewBottom" data="{{type: !data[current].hasMore ? 2 : 1}}" wx:if="{{data[current].list.length > 2}}" />
 </view>

@@ -29,13 +29,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "应用页",
 					"pathName": "page/article/index",
-					"query": "id=aqsbk.app"
+					"query": "id=acom.wandoujia.eyepetizer"
 				},
 				{
 					"id": 1,

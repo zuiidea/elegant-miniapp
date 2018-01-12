@@ -12,7 +12,7 @@ Page({
   ...videoPlayer,
 
   data: {
-    loading: true,
+    // loading: true,
     currentPlayId: null,
     current: null,
     data: {
@@ -32,20 +32,20 @@ Page({
     const { id } = this.data
     return new Promise((resolve, reject) => {
       request({
-        url: 'category.get',
+        url: 'provider/:id',
         data: {
-          category_id: id
+          id
         }
       }).then(({ data, success }) => {
         if (success) {
           wx.setNavigationBarTitle({
-            title: data.category.name,
+            title: data.name,
           })
           this.setData({
-            current: data.category.subCategories[0].categoryId,
-            categories: data.category.subCategories.map(item => ({
-              id: item.categoryId,
-              name: item.name
+            current: data.categories[0].categoryId,
+            categories: data.categories.map(item => ({
+              ...item,
+              id: item.categoryId
             }))
           }, () => {
             resolve()
@@ -60,20 +60,18 @@ Page({
     const { data, current } = this.data
     const currentData = data[current] || {}
     const { list = [] } = currentData
-    const { hasMore, hasPreMore, nextUrl } = odata
+    const { offset } = odata
     this.setData({
       data: {
         ...data,
         [current]: {
-          loading: false,
           ...data[current],
-          hasPreMore,
-          hasMore,
-          nextUrl,
-          // list: odata.list,
-          list: (hasPreMore ? list : []).concat(odata.list).map(item => ({
+          hasMore: odata.list.length === 10,
+          loading: false,
+          offset,
+          list: (offset === 0 ? [] : list).concat(odata.list).map(item => ({
             ...item,
-            date: formatTime(item.crawlerTimestamp)
+            date: formatTime(item.publishTimestamp)
           }))
         }
       }
@@ -81,8 +79,9 @@ Page({
   },
 
   fetch(options = {}) {
-    const { current, data } = this.data
-    const { nextUrl = '' } = options
+
+    const { current, data, id } = this.data
+    const { offset = 0 } = options
 
     if (!data[current]) {
       this.setData({
@@ -95,18 +94,17 @@ Page({
     }
 
     request({
-      url: nextUrl || 'article.list',
+      url: 'article',
       data: {
-        category_id: current
+        provider: id,
+        categoryId: current,
+        offset
       }
     }).then(({ data, success }) => {
       if (success) {
-        data = JSON.parse(handleUrl(JSON.stringify(data)))
         this.handleData({
-          list: data.articles,
-          hasMore: data.hasMore,
-          nextUrl: data.nextUrl,
-          hasPreMore: data.hasPreMore
+          list: data,
+          offset: offset,
         })
       }
     })
@@ -120,7 +118,7 @@ Page({
 
   onPageScroll(options) {
     const { data, current } = this.data
-    const { hasMore, nextUrl, dataLoading } = data[current]
+    const { hasMore, offset = 0, loading } = data[current]
     const { scrollTop } = options
     const { windowHeight } = wx.getSystemInfoSync()
 
@@ -131,14 +129,14 @@ Page({
     })
 
     beforeScrollTop = scrollTop
-
+    console.log(hasMore, offset, current)
     wx.createSelectorQuery().select('#container').boundingClientRect(({ height }) => {
-      if ((height - scrollTop - windowHeight - 335) < 0) {
-        if (hasMore && !dataLoading) {
+      if ((height - scrollTop - windowHeight - 2000) < 0) {
+        if (hasMore && !loading) {
           clearTimeout(timeId)
           timeId = setTimeout(() => {
             this.fetch({
-              nextUrl
+              offset: offset + 10
             })
           }, 300)
         }

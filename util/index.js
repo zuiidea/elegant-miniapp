@@ -4,8 +4,6 @@ import Promise from './es6-promise'
 let tid = 0
 let loginTimes = 0
 
-const apiToken = 'c400a7e21688496ca3e7f17c6b0d1846'
-
 const request = (config = {}) => {
   return new Promise((resolve, reject) => {
     let token = ''
@@ -29,10 +27,6 @@ const request = (config = {}) => {
       cloneConfig.url = host + cloneConfig.url
     }
 
-    cloneConfig.data = {
-      ...cloneConfig.data,
-      token: apiToken
-    }
 
     wx.request({
       ...cloneConfig,

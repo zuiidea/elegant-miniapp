@@ -12,10 +12,13 @@ Page({
 
   fetch() {
     request({
-      url: 'category.list',
+      url: 'provider',
+      data:{
+        limit:100
+      }
     }).then(({ data, success }) => {
       this.setData({
-        data: data.categories.reverse()
+        data
       })
     })
   },
