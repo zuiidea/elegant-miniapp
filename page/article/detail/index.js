@@ -18,21 +18,20 @@ Page({
   fetch() {
     const { id } = this.data
     request({
-      url: '/article.get',
+      url: 'article/:id',
       data: {
-        id,
-        format: 'raml'
+        id
       }
     })
       .then(({ data, success }) => {
         if (success) {
-          const article = JSON.parse(handleUrl(JSON.stringify(data.article)))
+
           wx.setNavigationBarTitle({
-            title: article.title,
+            title: data.title,
           })
 
-          article.date = formatTime(article.publishTimestamp)
-          this.setData(article)
+          data.date = formatTime(data.publishTimestamp)
+          this.setData(data)
         }
       })
   },
