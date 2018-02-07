@@ -1,4 +1,4 @@
-import { request, handleUrl, formatTime } from '../../util/index'
+import { request, formatTime } from '../../util/index'
 import videoPlayer from '../../component/videoPlayer/index'
 import scrollTag from '../../component/scrollTag/index'
 

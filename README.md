@@ -4,7 +4,9 @@
 
 ## 预览
 - 因个人小程序，无法公开发布预览
-- 待补充截屏
+
+![](https://image.zuiidea.com/elegant-miniapp/assets/1.0.0/index.gif)
+
 
 ## 注意
 - 请不要爬取本项目内接口，个人服务器，按量计费

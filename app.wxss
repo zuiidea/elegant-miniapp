@@ -1,7 +1,6 @@
 @import "./component/animate.wxss";
 @import "./component/common.wxss";
 @import "./component/loader/index.wxss";
-@import "./component/toast/index.wxss";
 @import "./component/icon/index.wxss";
 @import "./component/listViewBottom/index.wxss";
 @import "./component/videoPlayer/index.wxss";

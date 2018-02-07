@@ -1,17 +1,8 @@
 import { host } from './config'
 import Promise from './es6-promise'
 
-let tid = 0
-let loginTimes = 0
-
 const request = (config = {}) => {
   return new Promise((resolve, reject) => {
-    let token = ''
-    try {
-      token = wx.getStorageSync('token')
-    } catch (e) {
-    }
-
     const cloneConfig = { ...config }
     if (cloneConfig.data) {
       const { data } = cloneConfig
@@ -30,32 +21,7 @@ const request = (config = {}) => {
 
     wx.request({
       ...cloneConfig,
-      header: {
-        authorization: `Bearar ${token}`
-      },
       success(res) {
-        if (res.statusCode === 401) {
-          tid = setTimeout(() => {
-            clearTimeout(tid)
-            if (loginTimes < 4) {
-              login().then(rres => {
-                console.log(rres)
-                request(cloneConfig).then(reresult => {
-                  resolve(reresult)
-                })
-              })
-
-              loginTimes = loginTimes + 1
-            } else {
-              wx.showToast({
-                title: '多次登录未成功，请稍后再试或者重启',
-                icon: 'fail',
-                duration: 2000
-              })
-            }
-          }, 300)
-        }
-
         if (res.statusCode < 300) {
           resolve({
             data: res.data,
@@ -72,42 +38,6 @@ const request = (config = {}) => {
   })
 }
 
-
-const login = () => {
-  return new Promise((resolve, reject) => {
-    wx.login({
-      success: function (res) {
-        if (res.code) {
-          request({
-            url: '/user/login',
-            data: {
-              code: res.code
-            },
-            method: 'post',
-          })
-            .then(({ data }) => {
-              resolve(data.userInfo)
-              wx.setStorageSync('token', data.token)
-            })
-        }
-      }
-    });
-  })
-}
-
-const updateUserInfo = (data) => {
-  return new Promise((resolve, reject) => {
-    request({
-      url: '/user',
-      data,
-      method: 'put',
-    })
-      .then(data => {
-        resolve(data)
-      })
-  })
-}
-
 Promise.prototype.finally = function (fn) {
   function finFn() {
     setTimeout(fn)
@@ -117,17 +47,6 @@ Promise.prototype.finally = function (fn) {
 }
 
 
-const getRandomNum = (Min, Max) => {
-  const Range = Max - Min;
-  const Rand = Math.random();
-  return (Min + Math.round(Rand * Range))
-}
-
-const handleUrl = (str) => {
-  return str.replace(new RegExp(/api.qingmang.me\/v1/, 'g'), 'journal.zuiidea.com/api')
-    .replace(new RegExp(/qiniuimg.qingmang.mobi/, 'g'), 'journal.zuiidea.com')
-    .replace(new RegExp(/api.qingmang.me\/v2/, 'g'), 'journal.zuiidea.com/api')
-}
 
 const formatTime = (timestamp, relativeTimestamp = true) => {
   const currentDate = new Date()
@@ -170,10 +89,6 @@ const formatTime = (timestamp, relativeTimestamp = true) => {
 
 module.exports = {
   request,
-  updateUserInfo,
   Promise,
-  login,
-  getRandomNum,
-  handleUrl,
   formatTime
 }
