@@ -12,7 +12,6 @@ Page({
   ...videoPlayer,
 
   data: {
-    // loading: true,
     currentPlayId: null,
     current: null,
     data: {
@@ -129,7 +128,6 @@ Page({
     })
 
     beforeScrollTop = scrollTop
-    console.log(hasMore, offset, current)
     wx.createSelectorQuery().select('#container').boundingClientRect(({ height }) => {
       if ((height - scrollTop - windowHeight - 2000) < 0) {
         if (hasMore && !loading) {

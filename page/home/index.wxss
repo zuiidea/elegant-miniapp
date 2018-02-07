@@ -1,3 +1,8 @@
+.swiper-container {
+  width: 750rpx;
+  height: 100vh;
+}
+
 .provider-list {
   padding: 64rpx 30rpx;
   display: flex;
@@ -32,3 +37,4 @@
 .provider-item:active {
   opacity: 0.6;
 }
+

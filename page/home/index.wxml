@@ -1,11 +1,13 @@
 <include src="../../component/common/index.wxml" />
 <view class="container">
-  <view class="provider-list">
-    <block wx:for="{{data}}" wx:key="categoryId">
-      <navigator url="/page/article/index?id={{item.packageName}}" class="provider-item" hover-class="tranparent">
-        <image src="{{item.icon}}" class="provider-icon" />
-        <view class="provider-name">{{item.name}}</view>
-      </navigator>
-    </block>
-  </view>
+  <swiper class="swiper-container">
+    <swiper-item wx:for="{{data}}" wx:key="index" wx:for-item="ddata">
+      <view class="provider-list">
+        <navigator wx:for="{{ddata}}" wx:key="categoryId" url="/page/article/index?id={{item.packageName}}" class="provider-item" hover-class="tranparent">
+          <image src="{{item.icon}}" class="provider-icon" />
+          <view class="provider-name">{{item.name}}</view>
+        </navigator>
+      </view>
+    </swiper-item>
+  </swiper>
 </view>
