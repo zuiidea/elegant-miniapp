@@ -1,14 +1,10 @@
 import { request, handleUrl, formatTime } from '../../../util/index'
-
-const app = getApp()
-
 Page({
 
   data: {
   },
 
   onLoad(options) {
-    new app.Toast()
     this.setData(options, () => {
       this.fetch()
     })
